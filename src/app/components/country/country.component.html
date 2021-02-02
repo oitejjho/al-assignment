@@ -1,0 +1,30 @@
+<div class="main">
+	
+	<div class="form-group has-search">
+		<span class="fa fa-search form-control-feedback"></span>
+		<input type="text" class="form-control" placeholder="Search country name" #countryName/>
+		<button (click)="search(countryName.value)">
+        search
+      </button>
+    </div>
+    
+    <br>
+
+	<div class="main-container">
+		<ul>
+			<div class="card w-50" *ngFor="let country of countries; let i = index">
+				<div class="card-body row">
+					<div class="col">
+						<h6 class="card-title">{{country.name}}</h6>
+						<p class="card-text" style="font-weight: bold;">{{country.capital}}, {{country.subregion}}</p>
+					</div>
+					<div class="col">
+						<h6 class="card-title">Population</h6>
+						<p class="card-text">{{country.population}}</p>
+					</div>
+                </div>
+			</div>			
+		</ul>
+    </div>
+    
+</div>

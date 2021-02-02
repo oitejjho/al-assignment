@@ -1,0 +1,17 @@
+.main {
+    width: 50%;
+    margin: 50px auto;
+    
+}
+
+.main-container{
+    
+}
+
+.card-title{
+    color: blue;
+}
+
+.card-text{
+    font-weight: bold;
+}
