@@ -11,6 +11,7 @@ import { CountryService } from '../../services/country/country.service';
 export class CountryComponent implements OnInit {
 
   countries: Country[] = [];
+  filtereCountries: Country[] = [];
 
   constructor(private countryService : CountryService) { }
 
@@ -20,20 +21,22 @@ export class CountryComponent implements OnInit {
   }
 
   getCountries(): void {
-    this.countryService.getCountries()
-      .subscribe(countries => (this.countries = countries));
+    this.countryService.getCountries().subscribe(countries => {
+      this.filtereCountries = countries;
+      this.countries = JSON.parse(JSON.stringify(this.filtereCountries));
+    });
+    
   }
 
-  search(searchCountry: string) {
+  search(searchCountry: string): void {
     
-    if (searchCountry) {
-      this.countryService
-        .searchCountries(searchCountry)
-        .subscribe(countries => (this.countries = countries));
-    }
-    else{
-      this.getCountries();
-    }
+    searchCountry = searchCountry.trim();
+    if(searchCountry)
+      this.filtereCountries = this.countries.filter(country => country.name.toLowerCase().indexOf(searchCountry.toLowerCase()) !== -1);
+    else
+      this.filtereCountries = this.countries;
+    
+  
   }
 
 }
